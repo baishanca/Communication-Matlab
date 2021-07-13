@@ -60,3 +60,6 @@ subplot(7,1,7);
 plot(t,cover_signal);
 xlabel('时间t');
 ylabel('恢复信号的波形');
+
+%tips:为什么fft和ifft是取real()?
+%因为信号的频域如果是对称的话，则时域应该是实信号，故取实部
