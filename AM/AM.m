@@ -28,7 +28,7 @@ ylabel('已调信号');
 
 %绘制频谱
 N = length(t); %获取时域采样点数,共500个点
-z = abs(fft(Am_signal)); %DFT变换
+z = real(fft(Am_signal)); %DFT变换
 f = (0:N-1)*fs/N;
 
 z2 = fftshift(z);
@@ -47,7 +47,7 @@ xlabel('时间t');
 ylabel('已调信号与载波相乘');
 %plot(t,AM_mod);
 
-spectrum_AM_mod = abs(fft(AM_mod));
+spectrum_AM_mod = real(fft(AM_mod));
 subplot(7,1,5);
 plot(f2,fftshift(spectrum_AM_mod));
 xlabel('频率f');
@@ -60,7 +60,7 @@ plot(f2,lowpass_spectrum);
 xlabel('频率f');
 ylabel('理想低通后的频谱');
 
-rec_signal = abs(ifft(lowpass_spectrum)); %恢复出的时域信号，此时还包括直流分量Ac/2,且原信号的幅度变为原来的一半
+rec_signal = real(ifft(fftshift(lowpass_spectrum))); %恢复出的时域信号，此时还包括直流分量Ac/2,且原信号的幅度变为原来的一半
 subplot(7,1,7);
 plot(t,rec_signal);
 xlabel('时间t');
