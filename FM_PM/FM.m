@@ -19,7 +19,7 @@ mt2 = Am/(2*pi*fm)*sin(2*pi*fm*t); %mt2为原信号mt的积分，此处我们为
 
 st = Ac*cos(2*pi*fc*t+2*pi*Kf*mt2);
 
-z_m = real(fft(mt));
+z_m = abs(fft(mt));
 z_m1 = fftshift(z_m);
 
 z_s = abs(fft(st));
