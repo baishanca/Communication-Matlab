@@ -8,7 +8,7 @@ fc = 10;
 fs = 100; %采样频率为100Hz
 t = 0:1/fs:10-1/fs;
 N = length(t);
-f = (-N/2:N/2-1)*fs/N; %fs/N为最小频率间隔
+f = (-N/2:N/2-1)*fs/N; %fs/N为最小频率间隔，频率分辨率
 
 ori_signal = Am*cos(2*pi*fm*t); %调制信号
 DSB_signal = ori_signal.*(Ac*cos(2*pi*fc*t)); %已调信号
