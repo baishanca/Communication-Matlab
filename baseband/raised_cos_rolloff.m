@@ -1,6 +1,6 @@
 %对升余弦滚降滤波器的特性研究（Rasied cosine roll-off filter）
 Tb = 1; %码元传输速率
-fs = 1000; %1000Hz的采样频率
+fs = 17; %17Hz的采样频率，满足奈奎斯特第一准则
 t = -5*Tb:1/fs:5*Tb-1/fs; %时域范围
 N = length(t);
 
