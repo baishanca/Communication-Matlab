@@ -5,7 +5,7 @@
 Tb = 1; %码元长度
 fs = 103.7; %采样频率  %这里是个迷，因为和第9行的那个eps，需要调参才能使得图形完整
 dt = Tb/fs; %采样时间间隔
-t = -3.5*Tb:dt:3.5*Ts; %时域的时间区间
+t = -3.5*Tb:dt:3.5*Tb; %时域的时间区间
 gt = 4/pi*cos(pi*t/Tb)./(1-4*t.^2/Tb^2+eps); %第I类部分响应的时域表达式
 
 figure('NumberTitle', 'off', 'Name','第I类部分响应信号特性研究');
@@ -27,10 +27,21 @@ for j = 1:length(f)
     end
 end
 subplot(2,1,2);
-plot(f,Gf);
+plot(f,Gf); %可以看到，部分响应的频带利用率与理想低通信道相同
 axis([-2, 2 -0.5 2.5]);
 xlabel('频率f');
 ylabel('第I类部分响应的频域特性');
 grid on;
 
 %---但是直接判决会出现“差错传播现象”，故下面进行“预编码-相关编码-模2判决”的仿真
+ak = [1 0 1 1 0 0 0 1 0 1 1];
+b_ini = 0; %差分码的初始码元，需要指定一个初始码元
+b_k =[b_ini zeros(1,length(ak))];
+%计算差分码（预编码）
+for i = 1:length(ak)
+    b_k(i+1) = xor(ak(i),b_k(i));
+end
+
+Ck = b_k(1:end-1) + b_k(2:end); %相关编码
+rec_a = mod(Ck,2); %模2判决
+disp(rec_a);
