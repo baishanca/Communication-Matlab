@@ -47,7 +47,7 @@ xlabel('时间t');
 ylabel('已调信号与载波相乘');
 %plot(t,AM_mod);
 
-spectrum_AM_mod = real(fft(AM_mod));
+spectrum_AM_mod = abs(fft(AM_mod));
 subplot(7,1,5);
 plot(f2,fftshift(spectrum_AM_mod));
 xlabel('频率f');
