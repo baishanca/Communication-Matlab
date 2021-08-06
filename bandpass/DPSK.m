@@ -57,4 +57,3 @@ xlabel('t/s');
 ylabel('幅度');
 title('DPSK信号波形');
 
-
